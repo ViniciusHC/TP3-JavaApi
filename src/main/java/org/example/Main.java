@@ -32,6 +32,10 @@ public class Main {
             StringBuilder entidade13 = retorno.getEntendidadeId(13);
             System.out.println(entidade13);
 
+            //URL Fake
+            StringBuilder urlManual = retorno.UrlFake("/entities?categoria=teste&limite=5");
+            System.out.println(urlManual);
+
 
 
 

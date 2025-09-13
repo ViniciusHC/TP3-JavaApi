@@ -63,6 +63,14 @@ public class ConexaoEntidades {
         return response;
     }
 
+    public StringBuilder UrlFake (String URL) throws URISyntaxException, IOException {
+        StringBuilder response = new StringBuilder();
+        HttpURLConnection connection = gerarHttp( URL, "GET");
+
+        int responseCode = connection.getResponseCode();
+        response.append("URL final: "+baseURL+ URL+ "\nCódigo: "+responseCode);
+        return response;
+    }
 
 
 }
