@@ -47,8 +47,20 @@ public class Main {
             StringBuilder entidade11 = retorno.getEntendidadeId(11);
             System.out.println(entidade11);
 
+            //atualizar nova Entidade
+            System.out.println("\nAtualizar Entidade: ");
+            retorno.atualizarEntidade(10, "{"+"\"name\": \"eris\""+"}" );
 
-            //Id não encontrado
+
+            //buscar Entidade atualizada
+            System.out.println("\nEntidade atualizada:\n");
+            StringBuilder entidadeAtualizada = retorno.getEntendidadeId(10);
+            System.out.println(entidadeAtualizada);
+
+
+
+
+//            //Id não encontrado
             System.out.println("\nID não encontrado:\n");
             StringBuilder entidade13 = retorno.getEntendidadeId(13);
             System.out.println(entidade13);
