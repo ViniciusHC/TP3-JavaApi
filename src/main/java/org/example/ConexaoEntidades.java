@@ -22,7 +22,7 @@ public class ConexaoEntidades {
     }
 
     public StringBuilder getEntidades() throws URISyntaxException, IOException {
-        StringBuilder response = null;
+        StringBuilder response = new StringBuilder();
         HttpURLConnection connection = gerarHttp("/entities", "GET");
 
         int responseCode = connection.getResponseCode();
@@ -41,7 +41,7 @@ public class ConexaoEntidades {
     }
 
     public StringBuilder getEntendidadeId(int id) throws URISyntaxException, IOException {
-        StringBuilder response = null;
+        StringBuilder response = new StringBuilder();
         HttpURLConnection connection = gerarHttp("/entities/" + id, "GET");
 
         int responseCode = connection.getResponseCode();
@@ -55,7 +55,7 @@ public class ConexaoEntidades {
                 response.append(responseLine);
             }
         }else  if (responseCode == HttpURLConnection.HTTP_NOT_FOUND){
-            throw new RuntimeException("Entidade com ID "+id+" não encontradada!");
+            response.append("Erro: "+responseCode+ ". Entidade com ID "+id+" não encontrada!");
         }else {
             response.append(responseCode);
         }
@@ -70,6 +70,7 @@ public class ConexaoEntidades {
 
         int responseCode = connection.getResponseCode();
         response.append("URL final: "+baseURL+ URL+ "\nCódigo: "+responseCode);
+        connection.disconnect();
         return response;
     }
 
@@ -95,6 +96,7 @@ public class ConexaoEntidades {
             System.out.println("Entidade criada com sucesso!");
         }else response.append(responseCode);
 
+        connection.disconnect();
         return response;
     }
 
@@ -120,6 +122,7 @@ public class ConexaoEntidades {
             System.out.print("Entidade atualizada com POST!");
         }else response.append(responseCode);
 
+        connection.disconnect();
         return response;
     }
 
@@ -145,8 +148,26 @@ public class ConexaoEntidades {
             System.out.print("Entidade atualizada com PUT!");
         }else response.append(responseCode);
 
+        connection.disconnect();
         return response;
     }
+
+    public StringBuilder deleteEntidade(int id) throws URISyntaxException, IOException {
+            StringBuilder response = new StringBuilder();;
+            HttpURLConnection connection = gerarHttp("/entities/" + id, "DELETE");
+
+            int responseCode = connection.getResponseCode();
+
+            response.append(responseCode);
+            if (responseCode == HttpURLConnection.HTTP_NO_CONTENT){
+                System.out.println("Entidade "+id+" deletada com sucesso");
+            }else {
+                System.out.println("Não foi possíve deleter entidade. Erro: "+responseCode);
+            }
+            connection.disconnect();
+            return response;
+    }
+
 }
 
 

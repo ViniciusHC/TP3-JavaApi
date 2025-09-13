@@ -66,6 +66,20 @@ public class Main {
             StringBuilder entidadeAtualizadaComPUT = retorno.getEntendidadeId(10);
             System.out.println(entidadeAtualizadaComPUT);
 
+            //Delete entidade
+            System.out.println("\nEntidade deletada:\n");
+            StringBuilder entidadeDeletada = retorno.deleteEntidade(9);
+            System.out.println(entidadeDeletada);
+
+            System.out.println("\nTentar acessar Entidade deletada:\n");
+            StringBuilder getEntidadeDeletada = retorno.getEntendidadeId(9);
+            System.out.println(getEntidadeDeletada);
+
+            //Tentativa deletar entidade
+            System.out.println("\nTentar deletar Entidade:\n");
+            StringBuilder entidade2Deletada = retorno.deleteEntidade(2);
+
+
 
             //Id não encontrado
             System.out.println("\nID não encontrado:\n");
