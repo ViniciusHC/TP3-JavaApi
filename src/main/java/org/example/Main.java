@@ -47,20 +47,27 @@ public class Main {
             StringBuilder entidade11 = retorno.getEntendidadeId(11);
             System.out.println(entidade11);
 
-            //atualizar nova Entidade
+            //atualizar nova Entidade com POST
             System.out.println("\nAtualizar Entidade: ");
-            retorno.atualizarEntidade(10, "{"+"\"name\": \"eris\""+"}" );
+            retorno.atualizarEntidadeComPost(10, "{"+"\"name\": \"eris\""+"}" );
 
 
             //buscar Entidade atualizada
-            System.out.println("\nEntidade atualizada:\n");
+            System.out.println("\nEntidade atualizada com POST:\n");
             StringBuilder entidadeAtualizada = retorno.getEntendidadeId(10);
             System.out.println(entidadeAtualizada);
 
+            //atualizar com PUT
+            System.out.println("\nAtualizar Entidade com PUT: ");
+            retorno.atualizarEntidadeComPut(10, "{"+"\"name\": \"joão\""+"}" );
+
+            //buscar Entidade atualizada
+            System.out.println("\nEntidade atualizada com PUT:\n");
+            StringBuilder entidadeAtualizadaComPUT = retorno.getEntendidadeId(10);
+            System.out.println(entidadeAtualizadaComPUT);
 
 
-
-//            //Id não encontrado
+            //Id não encontrado
             System.out.println("\nID não encontrado:\n");
             StringBuilder entidade13 = retorno.getEntendidadeId(13);
             System.out.println(entidade13);

@@ -98,7 +98,7 @@ public class ConexaoEntidades {
         return response;
     }
 
-    public StringBuilder atualizarEntidade(int id, String post) throws URISyntaxException, IOException {
+    public StringBuilder atualizarEntidadeComPost(int id, String post) throws URISyntaxException, IOException {
         StringBuilder response = new StringBuilder();
         HttpURLConnection connection = gerarHttp("/entities/" +id, "POST");
 
@@ -123,6 +123,30 @@ public class ConexaoEntidades {
         return response;
     }
 
+    public StringBuilder atualizarEntidadeComPut(int id, String post) throws URISyntaxException, IOException {
+        StringBuilder response = new StringBuilder();
+        HttpURLConnection connection = gerarHttp("/entities/" +id, "PUT");
+
+        connection.setRequestProperty("Content-type", "application/json; charset=UTF-8");
+        connection.setDoOutput(true);
+        OutputStream outputStream = connection.getOutputStream();
+        byte[] bPost = post.getBytes();
+        outputStream.write(bPost);
+
+        int responseCode = connection.getResponseCode();
+
+        if (responseCode == HttpURLConnection.HTTP_OK){
+            InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream());
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String responseLine;
+            while ((responseLine = bufferedReader.readLine()) != null) {
+                response.append(responseLine);
+            }
+            System.out.print("Entidade atualizada com PUT!");
+        }else response.append(responseCode);
+
+        return response;
+    }
 }
 
 
