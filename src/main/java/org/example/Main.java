@@ -28,6 +28,11 @@ public class Main {
             StringBuilder entidade8 = retorno.getEntendidadeId(8);
             System.out.println(entidade8);
 
+            //Id não encontrado
+            StringBuilder entidade13 = retorno.getEntendidadeId(13);
+            System.out.println(entidade13);
+
+
 
 
         }catch (Exception e) {

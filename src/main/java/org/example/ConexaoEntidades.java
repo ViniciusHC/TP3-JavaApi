@@ -54,7 +54,7 @@ public class ConexaoEntidades {
                 response.append(responseLine);
             }
         }else  if (responseCode == HttpURLConnection.HTTP_NOT_FOUND){
-            throw new RuntimeException("Entidade com ID"+id+"não encontradada!");
+            throw new RuntimeException("Entidade com ID "+id+" não encontradada!");
         }else {
             response.append(responseCode);
         }
@@ -62,6 +62,9 @@ public class ConexaoEntidades {
         connection.disconnect();
         return response;
     }
+
+
+
 }
 
 
