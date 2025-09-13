@@ -1,4 +1,8 @@
 package org.example;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class Main {
     public static void main(String[] args) {
         try {
@@ -28,18 +32,28 @@ public class Main {
             StringBuilder entidade8 = retorno.getEntendidadeId(8);
             System.out.println(entidade8);
 
-            //Id não encontrado
-            StringBuilder entidade13 = retorno.getEntendidadeId(13);
-            System.out.println(entidade13);
-
             //URL Fake
+            System.out.println("\nURL ficticio:\n");
             StringBuilder urlManual = retorno.UrlFake("/entities?categoria=teste&limite=5");
             System.out.println(urlManual);
 
+            //inserir nova Entidade
+            System.out.println("\nInserir Entidade: ");
+            StringBuilder novaEntidade = retorno.insertEntidade("{\"name\": \"bob\"}");
 
 
+            //buscar nova Entidade
+            System.out.println("\nNova entidade:\n");
+            StringBuilder entidade11 = retorno.getEntendidadeId(11);
+            System.out.println(entidade11);
 
-        }catch (Exception e) {
+
+            //Id não encontrado
+            System.out.println("\nID não encontrado:\n");
+            StringBuilder entidade13 = retorno.getEntendidadeId(13);
+            System.out.println(entidade13);
+
+        }catch (URISyntaxException | IOException e) {
             System.out.println(e.getMessage());
         }
     }

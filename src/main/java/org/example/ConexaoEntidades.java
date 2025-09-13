@@ -3,6 +3,7 @@ package org.example;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.*;
 
 public class ConexaoEntidades {
@@ -72,6 +73,30 @@ public class ConexaoEntidades {
         return response;
     }
 
+    public StringBuilder insertEntidade(String post) throws URISyntaxException, IOException {
+        StringBuilder response = new StringBuilder();
+        HttpURLConnection connection = gerarHttp("/entities", "POST");
+
+        connection.setRequestProperty("Content-type", "application/json; charset=UTF-8");
+        connection.setDoOutput(true);
+        OutputStream outputStream = connection.getOutputStream();
+        byte[] bPost = post.getBytes();
+        outputStream.write(bPost);
+
+        int responseCode = connection.getResponseCode();
+
+        if (responseCode == HttpURLConnection.HTTP_CREATED){
+            InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream());
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String responseLine;
+            while ((responseLine = bufferedReader.readLine()) != null) {
+                response.append(responseLine);
+            }
+            System.out.println("Entidade criada com sucesso!");
+        }else response.append(responseCode);
+
+        return response;
+    }
 
 }
 
