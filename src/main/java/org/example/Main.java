@@ -71,15 +71,18 @@ public class Main {
             StringBuilder entidadeDeletada = retorno.deleteEntidade(9);
             System.out.println(entidadeDeletada);
 
-            System.out.println("\nTentar acessar Entidade deletada:\n");
+            System.out.println("\nTentar acessar Entidade deletada:");
             StringBuilder getEntidadeDeletada = retorno.getEntendidadeId(9);
             System.out.println(getEntidadeDeletada);
 
             //Tentativa deletar entidade
-            System.out.println("\nTentar deletar Entidade:\n");
+            System.out.println("\nTentar deletar Entidade:");
             StringBuilder entidade2Deletada = retorno.deleteEntidade(2);
 
-
+            //options todas entidades
+            StringBuilder optionsEntidades = retorno.optionsEntidades();
+            System.out.println("\nOptions entidades:\n");
+            System.out.println(optionsEntidades);
 
             //Id não encontrado
             System.out.println("\nID não encontrado:\n");

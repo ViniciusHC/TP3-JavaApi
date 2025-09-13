@@ -168,6 +168,16 @@ public class ConexaoEntidades {
             return response;
     }
 
+    public StringBuilder optionsEntidades() throws URISyntaxException, IOException {
+        StringBuilder response = new StringBuilder();
+        HttpURLConnection connection = gerarHttp("/entities", "OPTIONS");
+
+        int responseCode = connection.getResponseCode();
+        String allow = connection.getHeaderField("Allow");
+        response.append("HTTP: "+responseCode+"\nAllow: "+allow);
+        connection.disconnect();
+        return response;
+    }
 }
 
 
